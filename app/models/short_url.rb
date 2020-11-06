@@ -6,7 +6,17 @@ class ShortUrl < ApplicationRecord
   validate :validate_full_url
 
   def short_code
-
+    code = ''
+    if self.id
+      divisor = self.id / 62
+      while divisor != 0
+          code += CHARACTERS[divisor]
+          divisor = divisor / 62
+      end
+      code += CHARACTERS[self.id % 62]
+    else
+      nil
+    end
   end
 
   def update_title!

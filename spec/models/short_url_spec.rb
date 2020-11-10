@@ -66,6 +66,36 @@ RSpec.describe ShortUrl, type: :model do
         short_url.update_column(:id, 50)
         expect(short_url.short_code).to eq("O")
       end
+
+      it "has the short_code for id for 11" do
+        short_url.update_column(:id, 11)
+        expect(short_url.short_code).to eq("a")
+      end
+
+      it "has the short_code for id for 61" do
+        short_url.update_column(:id, 61)
+        expect(short_url.short_code).to eq("Y")
+      end
+
+      it "has the short_code for id for 62" do
+        short_url.update_column(:id, 62)
+        expect(short_url.short_code).to eq("Z")
+      end
+
+      it "has the short_code for id for 63" do
+        short_url.update_column(:id, 63)
+        expect(short_url.short_code).to eq("00")
+      end
+
+      it "has the short_code for id for 3906" do
+        short_url.update_column(:id, 3906)
+        expect(short_url.short_code).to eq("ZZ")
+      end
+
+      it "has the short_code for id for 3907" do
+        short_url.update_column(:id, 3907)
+        expect(short_url.short_code).to eq("000")
+      end
     end
 
   end

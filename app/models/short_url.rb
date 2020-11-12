@@ -28,7 +28,6 @@ class ShortUrl < ApplicationRecord
     end
   end
 
-
   def update_title!
   end
 

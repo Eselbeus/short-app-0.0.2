@@ -28,6 +28,15 @@ class ShortUrl < ApplicationRecord
     end
   end
 
+  def self.find_by_short_code(short_code)
+    id = 0
+    short_code.reverse.each_char.with_index do |digit, i|
+      c = CHARACTERS.find_index(digit)
+      id += (c + 1) * 62**i
+    end
+    @short_url = ShortUrl.find(id)
+  end
+
   def update_title!
   end
 

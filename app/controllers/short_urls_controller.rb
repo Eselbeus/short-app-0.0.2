@@ -18,13 +18,14 @@ class ShortUrlsController < ApplicationController
   end
 
   def show
-    @short_url = ShortUrl.find_by_short_code(params[:id])
-    if @short_url
+    begin
+      @short_url = ShortUrl.find_by_short_code(params[:id])
       @short_url.click_count += 1
       @short_url.save
       redirect_to @short_url.full_url
-    else
-      render json: @short_url.errors
+    rescue
+      @short_urls = ShortUrl.all
+      render json: @short_urls, status: :not_found
     end
   end
 

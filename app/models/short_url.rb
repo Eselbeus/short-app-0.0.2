@@ -35,6 +35,10 @@ class ShortUrl < ApplicationRecord
       id += (c + 1) * 62**i
     end
     @short_url = ShortUrl.find(id)
+    if @short_url
+      return @short_url
+    else
+    end
   end
 
   def update_title!

@@ -45,6 +45,11 @@ class ShortUrl < ApplicationRecord
 
   def validate_full_url
     full = self.full_url
-    errors.add(:full_url, "is not a valid url") unless !full.nil? && !!full.match(/^(https?:\/\/www\.|https?:\/\/|www\.)\w+\.[\w\/]+$/)
+    if full.nil?
+      errors.add(:full_url, "Full url is not a valid url")
+    else
+      errors.add(:full_url, "is not a valid url") unless !!full.match(/^(https?:\/\/www\.|https?:\/\/|www\.)\w+\.[\w\/]+$/)
+    end
   end
+
 end

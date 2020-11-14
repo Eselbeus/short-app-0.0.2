@@ -13,7 +13,7 @@ class ShortUrlsController < ApplicationController
     if @short_url.save
       render json: @short_url.as_json(methods: [:short_code])
     else
-      render json: @short_url.errors
+      render json: {errors: "Full url is not a valid url"}
     end
   end
 

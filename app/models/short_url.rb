@@ -39,6 +39,8 @@ class ShortUrl < ApplicationRecord
   end
 
   def update_title!
+    title = UpdateTitleJob.perform_now(self.id)
+    self.update({title: title})
   end
 
   private

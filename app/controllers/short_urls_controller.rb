@@ -5,7 +5,9 @@ class ShortUrlsController < ApplicationController
 
   def index
     @short_urls = ShortUrl.all
-    render json: @short_urls
+    render json: @short_urls.sort_by{|url| url.click_count}.reverse().slice(0, 100).map do |url|
+      url.short_code
+    end
   end
 
   def create
